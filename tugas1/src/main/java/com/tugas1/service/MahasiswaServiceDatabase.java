@@ -63,11 +63,9 @@ public class MahasiswaServiceDatabase implements MahasiswaService {
 
 	@Override
 	public Map<String, String> selectMahasiswaBy(int idUniv, int idFakultas, int idProdi) {
-		// TODO Auto-generated method stub
+		
 		Map<String, String> tmp = mahasiswaMapper.selectMahasiswaBy(idUniv, idFakultas, idProdi);
-		/*for (String t : tmp.values()) {
-			log.info(t);
-		}*/
+		
 		log.info(tmp.toString());
 		return mahasiswaMapper.selectMahasiswaBy(idUniv, idFakultas, idProdi);
 	}
