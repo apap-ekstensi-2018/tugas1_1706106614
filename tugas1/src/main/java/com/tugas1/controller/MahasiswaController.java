@@ -80,7 +80,7 @@ public class MahasiswaController {
 		model.addAttribute("options_jalur_masuk", mModel.JALUR_MASUK_OPTIONS);
 		model.addAttribute("linkSubmit", "/mahasiswa/tambah/submit");
 		model.addAttribute("hideAlert", true);
-		return "form-add-mahasiswa";
+		return "add-mahasiswa";
 	}
 
 	@RequestMapping(value = "/mahasiswa/tambah/submit", method = RequestMethod.POST)
@@ -107,7 +107,7 @@ public class MahasiswaController {
 		model.addAttribute("options_jalur_masuk", mModel.JALUR_MASUK_OPTIONS);
 		model.addAttribute("linkSubmit", "/mahasiswa/ubah/submit");
 		System.out.println(mahasiswa.getId());
-		return "form-update-mahasiswa";
+		return "update-mahasiswa";
 	}
 
 	@RequestMapping(value = "/mahasiswa/ubah/submit", method = RequestMethod.POST)
@@ -115,7 +115,9 @@ public class MahasiswaController {
 		mahasiswa.setNpm(getGenerateNPM(mahasiswa, "update"));
 		mahasiswa.setStatus("Aktif");
 		mahasiswaDAO.updateData(mahasiswa);
-		return "redirect:/mahasiswa/ubah/" + mahasiswa.getNpm();
+		model.addAttribute("statMessage","Sukses!");
+		model.addAttribute("message", String.format("Mahasiswa dengan NPM %s berhasil diubah.", mahasiswa.getNpm()));
+		return "response";
 		
 	}
 
